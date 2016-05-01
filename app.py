@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import os
+
 import tornado.ioloop
 from tornado.web import RequestHandler
 # import json
@@ -27,5 +29,6 @@ application = tornado.web.Application([
 
 
 if __name__ == "__main__":
-    application.listen(5000)
+    port = int(os.environ.get("PORT", 5000))
+    application.listen(port)
     tornado.ioloop.IOLoop.instance().start()
