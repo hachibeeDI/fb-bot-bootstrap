@@ -1,0 +1,15 @@
+backports-abc==0.4
+backports.ssl-match-hostname==3.5.0.1
+certifi==2016.2.28
+decorator==4.0.9
+dict==0.0.5
+get==0.0.7
+post==0.0.5
+public==0.0.0
+query-string==0.0.5
+request==0.0.5
+self==0.0.5
+singledispatch==3.4.0.3
+six==1.10.0
+tornado==4.3
+wheel==0.24.0
