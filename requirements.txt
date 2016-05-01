@@ -7,7 +7,7 @@ get==0.0.7
 post==0.0.5
 public==0.0.30
 query-string==0.0.5
-request==0.0.5
+requests==2.10.0
 self==0.0.5
 singledispatch==3.4.0.3
 six==1.10.0
