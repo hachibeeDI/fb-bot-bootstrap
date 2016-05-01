@@ -4,7 +4,7 @@ from __future__ import (print_function, division, absolute_import, unicode_liter
 import json
 import requests
 
-from .env import PAGE_ACCESS_TOKEN
+from ..env import PAGE_ACCESS_TOKEN
 
 
 def send_request(sender, message):
