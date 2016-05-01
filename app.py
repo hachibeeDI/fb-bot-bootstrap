@@ -6,7 +6,8 @@ import tornado.ioloop
 from tornado.web import RequestHandler
 # import json
 
-verify_token = 'aaaa'
+
+FB_VERIFY_TOKEN = None
 
 
 class IndexHandler(RequestHandler):
@@ -16,7 +17,7 @@ class IndexHandler(RequestHandler):
 
 class WebHookHandler(RequestHandler):
     def get(self):
-        if self.get_argument("hub.verify_token", "") == verify_token:
+        if self.get_argument("hub.verify_token", "") == FB_VERIFY_TOKEN:
             self.write(self.get_argument("hub.challenge", ""))
         else:
             self.write('Error, wrong validation token')
@@ -24,11 +25,12 @@ class WebHookHandler(RequestHandler):
 
 application = tornado.web.Application([
     (r"/", IndexHandler),
-    (r"/webhook", WebHookHandler),
+    (r"/fb/verify", WebHookHandler),
 ])
 
 
 if __name__ == "__main__":
+    FB_VERIFY_TOKEN = os.environ['FB_VERIFY_TOKEN']
     port = int(os.environ.get("PORT", 5000))
     application.listen(port)
     tornado.ioloop.IOLoop.instance().start()
