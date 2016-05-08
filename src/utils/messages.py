@@ -42,6 +42,19 @@ class TextMessage(MessageBase):
         })
 
 
+class ImageMessage(MessageBase):
+    def __init__(self, url):
+        super(ImageMessage, self).__init__('image')
+        self.url = url
+
+    def to_message(self):
+        return json.dumps({
+            "message":  {
+                "url": self.url
+            }
+        })
+
+
 class ButtonMessage(MessageBase):
     '''
         "message": {
@@ -67,5 +80,5 @@ class ButtonMessage(MessageBase):
         }
     '''
 
-    def __init__(self, ):
+    def __init__(self, title, ):
         pass
