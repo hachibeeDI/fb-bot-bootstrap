@@ -12,7 +12,13 @@ def send_request(sender, message):
     url = 'https://graph.facebook.com/v2.6/me/messages'
     headers = {'content-type': 'application/json'}
     params = {"access_token": PAGE_ACCESS_TOKEN}
-    requests.post(url, params=params, data=message.to_message(sender), headers=headers)
+    data = {'recipient': sender, 'message': message.to_message()}
+    requests.post(
+        url,
+        params=params,
+        data=json.dumps(data),
+        headers=headers
+    )
 
 
 class MessageBase(object):
@@ -28,11 +34,8 @@ class TextMessage(MessageBase):
         super(TextMessage, self).__init__('button')
         self.text = text
 
-    def to_message(self, sender):
+    def to_message(self):
         return json.dumps({
-            "recipient": {
-                "id": sender
-            },
             "message":  {
                 "text": self.text
             }
